@@ -1,7 +1,10 @@
 'use strict';
 
 const http = require('http');
-const
+const renderMainPage = require('.routes').renderMainPage;
+const getDataFromClient = require('.routes').getDataFromClient;
+const sendResult = require('.routes').sendResult;
+const show404Page = require('.routes').show404Page;
 
 http.createServer((request, response) => {
   const method = request.method;
