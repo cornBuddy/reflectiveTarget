@@ -27,7 +27,7 @@ exports.getDataFromClient = (req, res) => {
   res.end('OK');
 };
 
-exports.sendResult = (req, res) => {
+exports.sendResult = (res) => {
   const textResponse = JSON.stringify(reflectionResults);
   const header = {
     'Content-Type': 'application/json',

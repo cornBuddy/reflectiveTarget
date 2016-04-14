@@ -27,7 +27,7 @@ http.createServer((request, response) => {
   else if (method === 'POST' && url === '/points')
     getDataFromClient(request, response);
   else if (method === 'GET' && url === '/result')
-    sendResult(request, response);
+    sendResult(response);
   else if (method === 'GET' && _isFile(url))
     serveFile(request, response);
   else
