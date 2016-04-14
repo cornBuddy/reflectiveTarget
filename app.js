@@ -21,7 +21,7 @@ let _isFile = (url) => {
 http.createServer((request, response) => {
   const method = request.method;
   const url = request.url;
-  request.on('error', (error) => show500Page(response, error));
+  request.on('error', (error) => show500Page(error, response));
   if (method === 'GET' && url === '/')
     renderMainPage(request, response);
   else if (method === 'POST' && url === '/points')
@@ -31,5 +31,5 @@ http.createServer((request, response) => {
   else if (method === 'GET' && _isFile(url))
     serveFile(request, response);
   else
-    show404Page(request, response);
+    show404Page('no router', request, response);
 }).listen(8080);
