@@ -1,11 +1,22 @@
 'use strict';
 
 const http = require('http');
+
 const renderMainPage = require('./routes').renderMainPage;
 const getDataFromClient = require('./routes').getDataFromClient;
 const sendResult = require('./routes').sendResult;
 const show404Page = require('./routes').show404Page;
 const show500Page = require('./routes').show500Page;
+const serveFile = require('./routes').serveFile;
+
+
+let _isFile = (url) => {
+  const formats = ['js', 'gif', 'css', 'ico'];
+  for (const format of formats)
+    if (url.endsWith(format))
+      return true;
+  return false;
+};
 
 http.createServer((request, response) => {
   const method = request.method;
@@ -17,6 +28,8 @@ http.createServer((request, response) => {
     getDataFromClient(request, response);
   else if (method === 'GET' && url === '/result')
     sendResult(request, response);
+  else if (method === 'GET' && _isFile(url))
+    serveFile(request, response);
   else
     show404Page(request, response);
 }).listen(8080);
