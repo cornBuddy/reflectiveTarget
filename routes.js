@@ -7,6 +7,7 @@ const createReadStream = require('fs').createReadStream;
 const stat = require('fs').stat;
 
 const index = fs.readFileSync('./html/index.html');
+let reflectionResults = [];
 
 exports.renderMainPage = (req, res) => {
   const header = {
@@ -17,8 +18,13 @@ exports.renderMainPage = (req, res) => {
   res.end(index);
 };
 
-exports.getDataFromClient = () => {
-  throw new Error('not implemented');
+exports.getDataFromClient = (req, res) => {
+  let reflectionResult = '';
+  req.setEncoding('utf-8');
+  req.on('data', (chunk) => reflectionResult += chunk);
+  req.on('end', () => reflectionResults.push(JSON.parse(reflectionResult)));
+  console.log(reflectionResults);
+  res.end('OK');
 };
 
 exports.sendResult = () => {

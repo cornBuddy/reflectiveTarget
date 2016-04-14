@@ -2,7 +2,6 @@
 
 const targetImage = document.querySelector('img');
 targetImage.addEventListener('click', function(event) {
-  console.log('image clicked', event);
   const mock = {
     x: 1,
     y: 1
