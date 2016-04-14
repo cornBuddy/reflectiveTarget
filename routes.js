@@ -17,9 +17,13 @@ exports.renderMainPage = (req, res) => {
   res.end(index);
 };
 
-exports.getDataFromClient = null;
+exports.getDataFromClient = () => {
+  throw new Error('not implemented');
+};
 
-exports.sendResult = null;
+exports.sendResult = () => {
+  throw new Error('not implemented');
+};
 
 exports.show404Page = (error, req, res) => {
   console.log(`404 url: ${req.url}, err: ${error};`);
