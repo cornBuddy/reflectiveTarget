@@ -7,7 +7,6 @@ const createReadStream = require('fs').createReadStream;
 const stat = require('fs').stat;
 
 const index = fs.readFileSync('./html/index.html');
-const root = __dirname;
 
 exports.renderMainPage = (req, res) => {
   res.statusCode = 200;
@@ -25,6 +24,7 @@ exports.show500Page = null;
 
 exports.serveFile = (request, response) => {
   const parsedUrl = parse(request.url);
+  const root = __dirname;
   let path = join(root, 'html', parsedUrl.pathname);
   stat(path, (err, stat) => {
     if (err) {
