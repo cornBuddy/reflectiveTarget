@@ -23,7 +23,6 @@ exports.getDataFromClient = (req, res) => {
   req.setEncoding('utf-8');
   req.on('data', (chunk) => reflectionResult += chunk);
   req.on('end', () => reflectionResults.push(JSON.parse(reflectionResult)));
-  console.log(reflectionResults);
   res.end('OK');
 };
 
