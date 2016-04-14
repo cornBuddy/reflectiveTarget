@@ -27,8 +27,14 @@ exports.getDataFromClient = (req, res) => {
   res.end('OK');
 };
 
-exports.sendResult = () => {
-  throw new Error('not implemented');
+exports.sendResult = (req, res) => {
+  const textResponse = JSON.stringify(reflectionResults);
+  const header = {
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(textResponse)
+  };
+  res.writeHeader(200, header);
+  res.end(textResponse);
 };
 
 exports.show404Page = (error, req, res) => {
