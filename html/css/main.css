@@ -1,0 +1,47 @@
+body {
+    margin: 15px;
+}
+
+main {
+
+}
+
+img {
+    border: 1px black solid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h4 {
+    position: fixed;
+}
+
+h1 {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#target-wrapper {
+    position: fixed;
+    width: 700px;
+    height: 1000px;
+}
+
+.top {
+    top: 15%;
+}
+
+.bottom {
+    bottom: 15%;
+}
+
+.left {
+    left: 30%;
+}
+
+.right {
+    right: 30%;
+    text-align: right;
+}
