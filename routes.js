@@ -40,14 +40,13 @@ exports.clearBlitz = (req, res) => {
 };
 
 exports.getBlitzResult = (req, res) => {
-  let blitz = '';
-  req.setEncoding('utf-8');
+  let blitz = [];
   req.on('data', (chunk) => {
     console.log(chunk);
-    blitz += chunk;
+    blitz.push(chunk);
   });
   req.on('end', () => {
-    blitzResult.push(JSON.parse(blitz));
+    blitzResult.push(JSON.parse(Buffer.concat(blitz).toString()));
     console.log(blitz);
   });
   res.end('OK');
