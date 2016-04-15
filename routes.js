@@ -18,6 +18,16 @@ exports.renderMainPage = (req, res) => {
   res.end(index);
 };
 
+exports.clearPoints = (req, res) => {
+  reflectionResults = [];
+  const header = {
+    'Content-Type': 'text/html',
+    'Content-Length': Buffer.byteLength('OK')
+  };
+  res.writeHeader(200, header);
+  res.end('OK');
+};
+
 exports.getDataFromClient = (req, res) => {
   let reflectionResult = '';
   req.setEncoding('utf-8');
