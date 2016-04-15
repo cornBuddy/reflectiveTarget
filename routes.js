@@ -8,6 +8,7 @@ const stat = require('fs').stat;
 
 const index = fs.readFileSync('./html/index.html');
 let reflectionResults = [];
+let blitzResult = [];
 
 exports.renderMainPage = (req, res) => {
   const header = {
@@ -18,16 +19,32 @@ exports.renderMainPage = (req, res) => {
   res.end(index);
 };
 
-exports.sendBlitz = (request, response) => {
-  throw new Error('not implemented');
+exports.sendBlitz = (req, res) => {
+  const textResponse = JSON.stringify(reflectionResults);
+  const header = {
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(textResponse)
+  };
+  res.writeHeader(200, header);
+  res.end(textResponse);
 };
 
-exports.clearBlitz = (request, response) => {
-  throw new Error('not implemented');
+exports.clearBlitz = (req, res) => {
+  blitzResult = [];
+  const header = {
+    'Content-Type': 'text/html',
+    'Content-Length': Buffer.byteLength('OK')
+  };
+  res.writeHeader(200, header);
+  res.end('OK');
 };
 
-exports.getBlitzResult = (request, response) => {
-  throw new Error('not implemented');
+exports.getBlitzResult = (req, res) => {
+  let blitz = '';
+  req.setEncoding('utf-8');
+  req.on('data', (chunk) => blitz += chunk);
+  req.on('end', () => blitzResult.push(JSON.parse(blitz)));
+  res.end('OK');
 };
 
 exports.clearPoints = (req, res) => {
