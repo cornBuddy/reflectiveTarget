@@ -38,7 +38,6 @@ let displayResults = function(objects) {
       drawPoint(point);
     }
   }
-  return null;
 };
 
 let removePoints = function() {
@@ -64,6 +63,7 @@ clearTargetButton.addEventListener('click', function() {
   tapCounter = 0;
   tapsCoordinates = [];
   removePoints();
+  sendDataButton.className = 'hidden';
 });
 
 sendDataButton.addEventListener('click', function() {
