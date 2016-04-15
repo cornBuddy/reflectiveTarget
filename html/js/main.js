@@ -12,11 +12,13 @@ let generateData = function(data, httpMethod='POST') {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   };
-  return {
+  let obj = {
     method: httpMethod,
     body: JSON.stringify(data),
     headers: headers
   };
+  httpMethod === 'GET' && delete obj.body;
+  return obj;
 };
 
 let drawPoint = function(tap) {
@@ -26,18 +28,6 @@ let drawPoint = function(tap) {
   point.style.marginTop = `${tap.y}px`;
   point.style.marginLeft = `${tap.x}px`;
   imageWrapper.insertBefore(point, targetImage);
-};
-
-let parseObjects = function(response) {
-  return JSON.parse(response);
-};
-
-let displayResults = function(objects) {
-  for (let studentResult of objects) {
-    for (let point of studentResult) {
-      drawPoint(point);
-    }
-  }
 };
 
 let removePoints = function() {
@@ -71,5 +61,15 @@ sendDataButton.addEventListener('click', function() {
   const init = generateData(tapsCoordinates);
   fetch('/points', init)
     .then(() => console.log('ok'))
+    .catch((error) => console.log(error));
+  const getData = generateData(null, 'GET');
+  fetch('/points', getData)
+    .then((response) => {
+      response.json().then((objects) => {
+        for (let studentResult of objects)
+          for (let point of studentResult)
+            drawPoint(point);
+      });
+    })
     .catch((error) => console.log(error));
 });
