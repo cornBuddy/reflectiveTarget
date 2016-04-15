@@ -38,3 +38,13 @@ h1 {
     float: right;
     text-align: right;
 }
+
+.point {
+    background: red;
+    position: fixed;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 0px solid #d6d6d6;
+    z-index: 666;
+}
