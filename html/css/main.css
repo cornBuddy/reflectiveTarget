@@ -1,17 +1,8 @@
 body {
     margin: 15px;
 }
-
-main {
-
-}
-
 img {
     border: 1px black solid;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 h4 {
@@ -24,24 +15,30 @@ h1 {
 }
 
 #target-wrapper {
+    width: 600px;
+    height: 600px;
+}
+
+.centered {
     position: fixed;
-    width: 700px;
-    height: 1000px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .top {
-    top: 15%;
+    top: -3%;
 }
 
 .bottom {
-    bottom: 15%;
+    bottom: -3%;
 }
 
 .left {
-    left: 30%;
+    left: 5%;
 }
 
 .right {
-    right: 30%;
+    right: 5%;
     text-align: right;
 }
