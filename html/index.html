@@ -2,17 +2,27 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Рефлексивная мишень</title>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
   <main>
-    <h1>Рефлексивная мишень</h1>
-    <hr>
 
-    <div id="target-wrapper" class="centered">
+    <div id="blitz-wrapper" class="centered">
+      <h2>Блиц-опрос</h2>
+
+      <input type="text">
+      <input type="text">
+      <input type="text">
+      <input type="text">
+      <input type="text">
+      <button id="send-blitz">Отправить</button>
+    </div>
+
+    <div id="target-wrapper" class="centered hidden">
+      <h2>Рефлексивная мишень</h2>
+
       <h4 class="top left">Качество материала</h4>
       <h4 class="top right">Подача материала</h4>
       <div id="image-wrapper">
@@ -24,9 +34,6 @@
       <button id="clear">Очистить</button>
       <button id="send" class="hidden">Отправить</button>
     </div>
-    <hr>
-
-
 
   </main>
 
