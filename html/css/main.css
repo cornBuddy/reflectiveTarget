@@ -1,12 +1,21 @@
 body {
     margin: 15px;
 }
+
 img {
     border: 1px black solid;
 }
 
+hr {
+    width: 530px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 h4 {
-    position: fixed;
+    position: static;
+    display: inline-block;
 }
 
 h1 {
@@ -15,30 +24,17 @@ h1 {
 }
 
 #target-wrapper {
-    width: 600px;
-    height: 600px;
+    width: 530px;
+    height: 530px;
 }
 
 .centered {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.top {
-    top: -3%;
-}
-
-.bottom {
-    bottom: -3%;
-}
-
-.left {
-    left: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .right {
-    right: 5%;
+    float: right;
     text-align: right;
 }
