@@ -43,13 +43,15 @@ exports.getBlitzResult = (req, res) => {
   let blitz = '';
   req.setEncoding('utf-8');
   req.on('data', (chunk) => blitz += chunk);
-  req.on('end', () => blitzResult.push(JSON.parse(blitz)));
-  const header = {
-    'Content-Type': 'text/html',
-    'Content-Length': Buffer.byteLength('OK')
-  };
-  res.writeHeader(200, header);
-  res.end('OK');
+  req.on('end', () => {
+    blitzResult.push(JSON.parse(blitz));
+    const header = {
+      'Content-Type': 'text/html',
+      'Content-Length': Buffer.byteLength('OK')
+    };
+    res.writeHeader(200, header);
+    res.end('OK');
+  });
 };
 
 exports.clearPoints = (req, res) => {
@@ -66,13 +68,15 @@ exports.getDataFromClient = (req, res) => {
   let reflectionResult = '';
   req.setEncoding('utf-8');
   req.on('data', (chunk) => reflectionResult += chunk);
-  req.on('end', () => reflectionResults.push(JSON.parse(reflectionResult)));
-  const header = {
-    'Content-Type': 'text/html',
-    'Content-Length': Buffer.byteLength('OK')
-  };
-  res.writeHeader(200, header);
-  res.end('OK');
+  req.on('end', () => {
+    reflectionResults.push(JSON.parse(reflectionResult));
+    const header = {
+      'Content-Type': 'text/html',
+      'Content-Length': Buffer.byteLength('OK')
+    };
+    res.writeHeader(200, header);
+    res.end('OK');
+  });
 };
 
 exports.sendResult = (res) => {
