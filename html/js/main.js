@@ -101,9 +101,8 @@ const sendBlitzButton = document.getElementById('send-blitz');
 
 sendBlitzButton.addEventListener('click', function() {
   const blitzResult = getBlitzResult();
-  console.log(blitzResult);
   const init = generateData(blitzResult);
-  fetch('/blitz-result', init)
+  fetch('/blitz', init)
     .then(() => console.log('ok'))
     .catch((error) => console.log(error));
   showTarget();

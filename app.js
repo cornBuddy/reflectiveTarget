@@ -31,11 +31,11 @@ http.createServer((request, response) => {
     renderMainPage(request, response);
   else if (method === 'GET' && url === '/points')
     sendResult(response);
-  else if (method === 'GET' && url === '/blizt')
+  else if (method === 'GET' && url === '/blitz')
     sendBlitz(request, response);
   else if (method === 'GET' && url === '/clear-points')
     clearPoints(request, response);
-  if (method === 'GET' && url === '/clear-blitz')
+  else if (method === 'GET' && url === '/clear-blitz')
     clearBlitz(request, response);
   // post methods
   else if (method === 'POST' && url === '/points')

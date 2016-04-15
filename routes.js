@@ -20,7 +20,7 @@ exports.renderMainPage = (req, res) => {
 };
 
 exports.sendBlitz = (req, res) => {
-  const textResponse = JSON.stringify(reflectionResults);
+  const textResponse = JSON.stringify(blitzResult);
   const header = {
     'Content-Type': 'application/json',
     'Content-Length': Buffer.byteLength(textResponse)
@@ -76,7 +76,7 @@ exports.sendResult = (res) => {
 };
 
 exports.show404Page = (error, req, res) => {
-  console.log(`404 url: ${req.url}, err: ${error};`);
+  console.log(`404 url: ${req.method} ${req.url}, err: ${error};`);
   const header = {
     'Content-Type': 'text/html',
     'Content-Length': Buffer.byteLength('404')
