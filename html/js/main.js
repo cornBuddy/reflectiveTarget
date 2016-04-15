@@ -2,7 +2,10 @@
 
 let tapCounter = 0;
 let tapsCoordinates = [];
+
 const targetImage = document.querySelector('img');
+const clearTargetButton = document.getElementById('clear');
+const sendDataButton = document.getElementById('send');
 
 let generateData = function(data, httpMethod='POST') {
   const headers = {
@@ -16,19 +19,6 @@ let generateData = function(data, httpMethod='POST') {
   };
 };
 
-let parseObjects = function(response) {
-  return JSON.parse(response);
-};
-
-let displayResults = function(objects) {
-  for (let studentResult of objects) {
-    for (let point of studentResult) {
-      console.log(point);
-    }
-  }
-  return null;
-};
-
 let drawPoint = function(tap) {
   let point = document.createElement('div');
   let imageWrapper = document.getElementById('image-wrapper');
@@ -36,6 +26,19 @@ let drawPoint = function(tap) {
   point.style.marginTop = `${tap.y}px`;
   point.style.marginLeft = `${tap.x}px`;
   imageWrapper.insertBefore(point, targetImage);
+};
+
+let parseObjects = function(response) {
+  return JSON.parse(response);
+};
+
+let displayResults = function(objects) {
+  for (let studentResult of objects) {
+    for (let point of studentResult) {
+      drawPoint(point);
+    }
+  }
+  return null;
 };
 
 targetImage.addEventListener('click', function(event) {
@@ -48,9 +51,22 @@ targetImage.addEventListener('click', function(event) {
     drawPoint(tap);
     tapCounter++;
   } else {
-    const init = generateData(tapsCoordinates);
-    fetch('/points', init)
-      .then(() => console.log('ok'))
-      .catch((error) => console.log(error));
+    sendDataButton.className = '';
   }
+});
+
+clearTargetButton.addEventListener('click', function() {
+  tapCounter = 0;
+  tapsCoordinates = [];
+  let points = document.querySelectorAll('.point');
+  Array.prototype.forEach.call(points, function(point) {
+    point.remove();
+  });
+});
+
+sendDataButton.addEventListener('click', function() {
+  const init = generateData(tapsCoordinates);
+  fetch('/points', init)
+    .then(() => console.log('ok'))
+    .catch((error) => console.log(error));
 });

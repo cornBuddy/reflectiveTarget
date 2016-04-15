@@ -23,9 +23,32 @@ h1 {
     text-align: center;
 }
 
+button {
+    border: none;
+    width: 50%;
+    height: 50px;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    float: left;
+    border: 1px solid black;
+}
+
 #target-wrapper {
     width: 530px;
-    height: 530px;
+    height: 720px;
+}
+
+#clear {
+    background-color: yellow;
+}
+
+#send {
+    background-color: green;
+}
+
+.hidden {
+    display: none;
 }
 
 .centered {
