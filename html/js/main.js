@@ -67,9 +67,7 @@ clearTargetButton.addEventListener('click', function() {
 sendDataButton.addEventListener('click', function() {
   removePoints();
   const init = generateData(tapsCoordinates);
-  fetch('/points', init)
-    .then(() => console.log('ok'))
-    .catch((error) => console.log(error));
+  fetch('/points', init);
   const getData = generateData(null, 'GET');
   fetch('/points', getData)
     .then((response) => displayPoints(response))
@@ -102,8 +100,6 @@ const sendBlitzButton = document.getElementById('send-blitz');
 sendBlitzButton.addEventListener('click', function() {
   const blitzResult = getBlitzResult();
   const init = generateData(blitzResult);
-  fetch('/blitz', init)
-    .then(() => console.log('ok'))
-    .catch((error) => console.log(error));
+  fetch('/blitz', init);
   showTarget();
 });
