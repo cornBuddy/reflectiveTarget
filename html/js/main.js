@@ -41,30 +41,33 @@ let displayResults = function(objects) {
   return null;
 };
 
+let removePoints = function() {
+  let points = document.querySelectorAll('.point');
+  Array.prototype.forEach.call(points, function(point) {
+    point.remove();
+  });
+};
+
 targetImage.addEventListener('click', function(event) {
-  if (tapCounter != 4) {
-    const tap = {
-      x: event.offsetX,
-      y: event.offsetY
-    };
-    tapsCoordinates.push(tap);
-    drawPoint(tap);
-    tapCounter++;
-  } else {
+  const tap = {
+    x: event.offsetX,
+    y: event.offsetY
+  };
+  tapsCoordinates.push(tap);
+  drawPoint(tap);
+  tapCounter++;
+  if (tapCounter === 4)
     sendDataButton.className = '';
-  }
 });
 
 clearTargetButton.addEventListener('click', function() {
   tapCounter = 0;
   tapsCoordinates = [];
-  let points = document.querySelectorAll('.point');
-  Array.prototype.forEach.call(points, function(point) {
-    point.remove();
-  });
+  removePoints();
 });
 
 sendDataButton.addEventListener('click', function() {
+  removePoints();
   const init = generateData(tapsCoordinates);
   fetch('/points', init)
     .then(() => console.log('ok'))
