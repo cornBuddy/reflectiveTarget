@@ -37,6 +37,14 @@ let removePoints = function() {
   });
 };
 
+let displayPoints = function(response) {
+  return response.json().then((objects) => {
+    for (let studentResult of objects)
+      for (let point of studentResult)
+        drawPoint(point);
+  });
+};
+
 targetImage.addEventListener('click', function(event) {
   const tap = {
     x: event.offsetX,
@@ -64,12 +72,7 @@ sendDataButton.addEventListener('click', function() {
     .catch((error) => console.log(error));
   const getData = generateData(null, 'GET');
   fetch('/points', getData)
-    .then((response) => {
-      response.json().then((objects) => {
-        for (let studentResult of objects)
-          for (let point of studentResult)
-            drawPoint(point);
-      });
-    })
+    .then((response) => displayPoints(response))
     .catch((error) => console.log(error));
+  sendDataButton.innerHTML = 'Обновить';
 });
