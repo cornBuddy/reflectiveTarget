@@ -18,6 +18,18 @@ exports.renderMainPage = (req, res) => {
   res.end(index);
 };
 
+exports.sendBlitz = (request, response) => {
+  throw new Error('not implemented');
+};
+
+exports.clearBlitz = (request, response) => {
+  throw new Error('not implemented');
+};
+
+exports.getBlitzResult = (request, response) => {
+  throw new Error('not implemented');
+};
+
 exports.clearPoints = (req, res) => {
   reflectionResults = [];
   const header = {
